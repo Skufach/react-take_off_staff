@@ -12,6 +12,6 @@ storiesOf("ui/organisms", module).add("ConditionBlock", () => (
   //   selecting: "selecting"
   // })}
   // onPress={action("press")}
-//   items={[{ value: "121" }, { value: "21412" }, { value: "2412" }]}
+  items={[{ value: "121" }, { value: "21412" }, { value: "2412" }]}
   />
 ));

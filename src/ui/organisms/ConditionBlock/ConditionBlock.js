@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Title, IconDelete } from "../../atoms";
@@ -33,14 +33,16 @@ const LineContainer = styled.div`
 `;
 
 export const ConditionBlock = ({ items }) => {
+  const [currentCondition, getCurrentCondition] = useState({});
+
   const color = setBg();
   return (
     <ConditionContainer color={color}>
       <LineContainer>
         <Title color={color}>Условие 1</Title>
-        <SelectInput items={items} />
+        <SelectInput items={items} onPress={getCurrentCondition} />
       </LineContainer>
-      <LineContainer justify='flex-end'>
+      <LineContainer justify="flex-end">
         <Button IconLeft={IconDelete} status="attention">
           Удалить условие
         </Button>

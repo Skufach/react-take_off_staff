@@ -17,7 +17,7 @@ const SelectBlock = styled.select`
 `;
 
 export const SelectInput = ({ items, type, onPress }) => {
-  console.log(typeof items);
+  // console.log(typeof items);
 
   const selectList = items ? (
     items.map((item, index) => (
@@ -31,7 +31,12 @@ export const SelectInput = ({ items, type, onPress }) => {
 
   return (
     <React.Fragment>
-      <SelectBlock items={items}>{selectList}</SelectBlock>
+      <SelectBlock
+        items={items}
+        onChange={event => onPress(event.target.value)}
+      >
+        {selectList}
+      </SelectBlock>
       {/* {type === "range" ? <input /> : <SelectBlock />} */}
     </React.Fragment>
   );
@@ -44,3 +49,6 @@ export const SelectInput = ({ items, type, onPress }) => {
 // {name, type, values}
 // при range values = [{}, {} ...{}]
 // при selecting values = ['', '' ... ''] или мб как range
+
+// условия
+
