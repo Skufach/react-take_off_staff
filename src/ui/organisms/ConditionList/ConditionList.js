@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ConditionBlock } from "../ConditionBlock/ConditionBlock";
 import { SpecialButton } from "../../molecules";
 
-export const ConditionList = ({ conditionsList }) => {
+export const ConditionList = ({ conditionsList, conditions }) => {
   const [currentList, getCurrentList] = useState([]);
 
   // let conditionsState = conditionsList;
@@ -19,7 +19,7 @@ export const ConditionList = ({ conditionsList }) => {
     ));
   };
 
-  console.log(selectList);
+  console.log(conditions);
 
   return (
     <React.Fragment>

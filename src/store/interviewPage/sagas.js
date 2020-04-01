@@ -20,11 +20,13 @@ function* interviewPageWorker() {
     const status = res.status;
     const data = yield call([res, res.json]);
     const conditionsList = yield data.conditionsList;
+    const conditions = yield data.conditions;
 
     if (status === 200) {
       yield put(
         actions.success({
-          conditionsList: conditionsList
+          conditionsList: conditionsList,
+          conditions: conditions
         })
       );
     } else {

@@ -2,7 +2,8 @@ import { handleActions } from "redux-actions";
 import * as actions from "./actions";
 
 const initialState = {
-  conditionsList: []
+  conditionsList: [],
+  conditions: []
 };
 
 export const reducer = handleActions(

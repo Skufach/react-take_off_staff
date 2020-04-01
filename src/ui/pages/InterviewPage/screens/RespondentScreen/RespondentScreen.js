@@ -17,7 +17,11 @@ const HeaderTitle = styled(Title)`
   margin: 10px;
 `;
 
-export const RespondentScreen = ({ conditionsList, fetchingTrigger }) => {
+export const RespondentScreen = ({
+  conditionsList,
+  conditions,
+  fetchingTrigger
+}) => {
   useEffect(() => {
     fetchingTrigger();
   }, []);
@@ -25,7 +29,7 @@ export const RespondentScreen = ({ conditionsList, fetchingTrigger }) => {
   return (
     <RespondentContainer>
       <HeaderTitle color="d9d9d9">Добавить опрос </HeaderTitle>
-      <ConditionList conditionsList={conditionsList} />
+      <ConditionList conditionsList={conditionsList} conditions={conditions} />
     </RespondentContainer>
   );
 };
