@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-
-import { Text } from "../../atoms";
 
 const SelectBlock = styled.select`
   width: 550px;
@@ -13,42 +11,52 @@ const SelectBlock = styled.select`
   letter-spacing: 0.5px;
   padding: 6px;
   border-radius: 10px;
-  border-color: ${({ items }) => (items ? null : "red")};
+  border: 1.5px solid;
+  border-color: ${({ items, current }) =>
+    current === "" ? "green" : items ? null : "red"};
 `;
 
 export const SelectInput = ({ items, type, onPress }) => {
   // console.log(typeof items);
+  const [currentValue, getCurrentValue] = useState("none");
 
-  const selectList = items ? (
-    items.map((item, index) => (
-      <option key={index} value={item.value}>
-        {item.value}
-      </option>
-    ))
-  ) : (
-    <option value="none">Нет условий</option>
-  );
+  const createList = () => {
+    const list = items ? (
+      items.map((item, index) => (
+        <option key={index} value={item.value}>
+          {item.value}
+        </option>
+      ))
+    ) : (
+      <option value="none">Нет условий</option>
+    );
+
+    if (items) {
+      console.log(list);
+      list.unshift(
+        <option value="" selected hidden>
+          Выберите условие
+        </option>
+      );
+    }
+    return list;
+  };
+
+  const selectList = createList();
 
   return (
     <React.Fragment>
       <SelectBlock
+        value={currentValue}
         items={items}
-        onChange={event => onPress(event.target.value)}
+        onChange={event => {
+          onPress(event.target.value);
+          getCurrentValue(event.target.value);
+        }}
+        current={currentValue}
       >
         {selectList}
       </SelectBlock>
-      {/* {type === "range" ? <input /> : <SelectBlock />} */}
     </React.Fragment>
   );
 };
-
-// тип карты -> gold, silver, бронзовый
-// статус активна, в ожидании, Приостановлена, неактивна
-
-// набор условий:
-// {name, type, values}
-// при range values = [{}, {} ...{}]
-// при selecting values = ['', '' ... ''] или мб как range
-
-// условия
-

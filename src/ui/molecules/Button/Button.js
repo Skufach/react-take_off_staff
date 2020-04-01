@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { IconDelete, IconPlus, Text } from "../../atoms";
+import { Text } from "../../atoms";
 
 const ButtonDiv = styled.div`
   border: 2px solid;
@@ -32,13 +32,7 @@ const ButtonDiv = styled.div`
     status === "success" ? "#06a326" : "white"};
 `;
 
-export const Button = ({
-  IconLeft,
-  IconRight,
-  children,
-  status,
-  onPress
-}) => {
+export const Button = ({ IconLeft, IconRight, children, status, onPress }) => {
   return (
     <ButtonDiv status={status} onClick={() => onPress()}>
       {IconLeft ? <IconLeft /> : null}
@@ -47,7 +41,6 @@ export const Button = ({
     </ButtonDiv>
   );
 };
-
 
 /* 4 статуса: 
 1) attention - красная кнопка

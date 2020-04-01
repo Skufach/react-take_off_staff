@@ -9,5 +9,6 @@ export const Title = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 4px;
   color: ${({ color }) => (color ? "#" + color : "black")};
 `;
