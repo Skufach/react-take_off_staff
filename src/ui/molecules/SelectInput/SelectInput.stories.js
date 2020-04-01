@@ -7,10 +7,6 @@ import { select, array } from "@storybook/addon-knobs";
 
 storiesOf("ui/molecules", module).add("SelectInput", () => (
   <SelectInput
-    type={select("type", {
-      range: "range",
-      selecting: "selecting"
-    })}
     onPress={action("press")}
     items={[{ value: "121" }, { value: "21412" }, { value: "2412" }]}
   >

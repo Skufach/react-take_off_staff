@@ -2,8 +2,9 @@
     "conditionsList": [   
     {
       "id": 1,
-      "name": "Тип карты лояльности",
-      "shortName": "Тип",
+      "name": "typeCard",
+      "title": "Тип карты лояльности",
+      "shortTitle": "Тип",
       "type": "selecting",
       "items": [
           { "value": "Black" }, 
@@ -13,8 +14,9 @@
     },
     {
         "id": 2,
-        "name": "Статус карты лояльности",
-        "shortName": "Статус",
+        "name": "statusCard",
+        "title": "Статус карты лояльности",
+        "shortTitle": "Статус",
         "type": "selecting",
         "items": [
         { "value": "активна" },
@@ -24,8 +26,9 @@
     },
     {
         "id": 3,
-        "name": "Возраст респондента",
-        "shortName": "Диапазон",
+        "name": "ageRespondent",
+        "title": "Возраст респондента",
+        "shortTitle": "Диапазон",
         "type": "range"
     }
 ]

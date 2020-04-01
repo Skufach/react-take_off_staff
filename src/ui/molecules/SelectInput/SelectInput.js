@@ -16,9 +16,10 @@ const SelectBlock = styled.select`
     current === "" ? "green" : items ? null : "red"};
 `;
 
-export const SelectInput = ({ items, type, onPress }) => {
+export const SelectInput = ({ items, onPress }) => {
   // console.log(typeof items);
-  const [currentValue, getCurrentValue] = useState("none");
+
+  const [currentValue, getCurrentValue] = useState("");
 
   const createList = () => {
     const list = items ? (
@@ -32,9 +33,8 @@ export const SelectInput = ({ items, type, onPress }) => {
     );
 
     if (items) {
-      console.log(list);
       list.unshift(
-        <option value="" selected hidden>
+        <option key="uniq" value="" hidden>
           Выберите условие
         </option>
       );

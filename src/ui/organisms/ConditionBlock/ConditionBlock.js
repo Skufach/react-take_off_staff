@@ -32,15 +32,21 @@ const LineContainer = styled.div`
   justify-content: ${({ justify }) => (justify ? justify : "space-between")};
 `;
 
-export const ConditionBlock = ({ items }) => {
-  const [currentCondition, getCurrentCondition] = useState({});
+const color = setBg();
+export const ConditionBlock = ({ condition }) => {
+  const [currentConditionItem, getCurrentConditionItem] = useState({});
 
-  const color = setBg();
   return (
     <ConditionContainer color={color}>
       <LineContainer>
         <Title color={color}>Условие 1</Title>
-        <SelectInput items={items} onPress={getCurrentCondition} />
+
+        {condition ? (
+          <SelectInput
+            items={condition.items}
+            onPress={getCurrentConditionItem}
+          />
+        ) : null}
       </LineContainer>
       <LineContainer justify="flex-end">
         <Button IconLeft={IconDelete} status="attention">
