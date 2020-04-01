@@ -19,6 +19,9 @@ const ButtonDiv = styled.div`
   ${Text} {
     width: 80%;
   }
+  :hover {
+    background: grey;
+  }
 `;
 
 const Plus = styled.div`

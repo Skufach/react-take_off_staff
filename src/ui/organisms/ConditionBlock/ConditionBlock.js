@@ -32,10 +32,10 @@ const LineContainer = styled.div`
   justify-content: ${({ justify }) => (justify ? justify : "space-between")};
 `;
 
-const color = setBg();
+
 export const ConditionBlock = ({ condition }) => {
   const [currentConditionItem, getCurrentConditionItem] = useState({});
-
+  const color = setBg();
   return (
     <ConditionContainer color={color}>
       <LineContainer>
