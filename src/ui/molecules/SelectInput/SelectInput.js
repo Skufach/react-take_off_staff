@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const SelectBlock = styled.select`
@@ -16,8 +16,15 @@ const SelectBlock = styled.select`
     current === "" ? "green" : items ? null : "red"};
 `;
 
-export const SelectInput = ({ items, onPress }) => {
+export const SelectInput = ({ items, onPress, id, value }) => {
   const [currentValue, getCurrentValue] = useState("");
+
+  useEffect(() => {
+    if (id) {
+      const val = items.find(item => item.id === id);
+      getCurrentValue(val.value);
+    }
+  }, [id]);
 
   const createList = () => {
     const list = items ? (
@@ -45,12 +52,9 @@ export const SelectInput = ({ items, onPress }) => {
   return (
     <React.Fragment>
       <SelectBlock
-        value={currentValue}
+        value={value}
         items={items}
-        onChange={event => {
-          onPress(event.target.value);
-          getCurrentValue(event.target.value);
-        }}
+        onChange={event => onPress(event.target.value)}
         current={currentValue}
       >
         {selectList}

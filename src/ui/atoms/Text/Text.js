@@ -8,4 +8,5 @@ export const Text = styled.div`
   line-height: 20px;
   letter-spacing: 0.5px;
   padding: 6px;
+  margin: auto;
 `;

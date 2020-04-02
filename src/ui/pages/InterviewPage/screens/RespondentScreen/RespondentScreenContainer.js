@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { reduxForm, formValueSelector } from "redux-form";
 
 import { RespondentScreen } from "./RespondentScreen";
 
@@ -16,4 +17,8 @@ const mapStateToProps = state => ({
 
 export const RespondentScreenContainer = connect(mapStateToProps, {
   fetchingTrigger
-})(RespondentScreen);
+})(
+  reduxForm({
+    form: "conditionForm"
+  })(RespondentScreen)
+);

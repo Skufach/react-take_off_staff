@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 
 import { ConditionBlock } from "../ConditionBlock/ConditionBlock";
 import { SpecialButton } from "../../molecules";
+
+const ConditionListContainer = styled.div`
+  overflow-y: auto;
+  display: block;
+  height: 450px;
+`;
 
 export const ConditionList = ({ conditionsList, conditions }) => {
   const [currentList, getCurrentList] = useState([]);
@@ -26,12 +32,32 @@ export const ConditionList = ({ conditionsList, conditions }) => {
     getNewCurrentActive(false);
   };
 
+  const deleteCondition = id => {
+    const newCurrentList = currentList.filter(item => item !== id);
+    const conditionIndex = conditions.findIndex(item => item.id === id);
+    const newCondition = conditions[conditionIndex];
+    const newActiveConditions = activeConditions.concat(newCondition);
+
+    getCurrentList(newCurrentList);
+    getActiveConditions(newActiveConditions);
+  };
+
   const showConditions = currentList => {
     const newList = conditionsList.filter(item =>
       currentList.includes(item.id)
     );
-    return newList.map((item, _index) => (
-      <ConditionBlock condition={item.items} key={item.name} />
+    return newList.map((item, index) => (
+      <ConditionBlock
+        condition={item.items}
+        conditions={conditions}
+        key={item.name}
+        onDelete={deleteCondition}
+        id={item.id}
+        indexCondition={index + 1}
+        type={item.type}
+        shortTitle={item.shortTitle}
+        onPress={e => console.log(e)}
+      />
     ));
   };
 
@@ -40,7 +66,8 @@ export const ConditionList = ({ conditionsList, conditions }) => {
   );
 
   return (
-    <React.Fragment>
+    <ConditionListContainer>
+       <form>
       {currentList ? showConditions(currentList) : null}
 
       {newCurrentActive === false && activeConditions.length !== 0 ? (
@@ -50,7 +77,7 @@ export const ConditionList = ({ conditionsList, conditions }) => {
         </SpecialButton>
       ) : activeConditions.length !== 0 ? (
         createCondition(activeConditions)
-      ) : null}
-    </React.Fragment>
+      ) : null}</form>
+    </ConditionListContainer>
   );
 };

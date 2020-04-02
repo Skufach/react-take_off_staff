@@ -16,7 +16,7 @@ const InputContainer = styled.input`
 
 const InputLabel = styled.label`
   margin: auto;
-  font-size: 18px;
+  font-size: 16px;
 `;
 
 export const NumberInput = ({ limitPosition }) => {
