@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { Title, IconDelete } from "../../atoms";
@@ -32,9 +32,7 @@ const LineContainer = styled.div`
   justify-content: ${({ justify }) => (justify ? justify : "space-between")};
 `;
 
-
-export const ConditionBlock = ({ condition }) => {
-  const [currentConditionItem, getCurrentConditionItem] = useState({});
+export const ConditionBlock = ({ condition, onPress }) => {
   const color = setBg();
   return (
     <ConditionContainer color={color}>
@@ -42,10 +40,7 @@ export const ConditionBlock = ({ condition }) => {
         <Title color={color}>Условие 1</Title>
 
         {condition ? (
-          <SelectInput
-            items={condition.items}
-            onPress={getCurrentConditionItem}
-          />
+          <SelectInput items={condition} onPress={onPress} />
         ) : null}
       </LineContainer>
       <LineContainer justify="flex-end">

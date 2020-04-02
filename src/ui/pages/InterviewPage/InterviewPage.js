@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Switch, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
 import { InterviewNavigation } from "../../organisms";
 import {

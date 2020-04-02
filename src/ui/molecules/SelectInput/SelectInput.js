@@ -17,8 +17,6 @@ const SelectBlock = styled.select`
 `;
 
 export const SelectInput = ({ items, onPress }) => {
-  // console.log(typeof items);
-
   const [currentValue, getCurrentValue] = useState("");
 
   const createList = () => {
