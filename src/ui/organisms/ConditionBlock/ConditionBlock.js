@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Field } from "redux-form";
 
-import { Title, IconDelete, Text } from "../../atoms";
+import { Title, IconDelete, Text, LineContainer } from "../../atoms";
 import { SelectInput, Button, NumberInput } from "../../molecules";
 
 const setBg = () => {
@@ -27,15 +27,15 @@ const ConditionContainer = styled.div`
   }
 `;
 
-const LineContainer = styled.div`
-  padding: 20px;
-  display: flex;
-  justify-content: ${({ justify }) => (justify ? justify : "space-between")};
+// const LineContainer = styled.div`
+//   padding: 20px;
+//   display: flex;
+//   justify-content: ${({ justify }) => (justify ? justify : "space-between")};
 
-  ${Text} {
-    margin-left: 0;
-  }
-`;
+//   ${Text} {
+//     margin-left: 0;
+//   }
+// `;
 
 export const ConditionBlock = ({
   condition,
@@ -45,7 +45,8 @@ export const ConditionBlock = ({
   indexCondition,
   type,
   shortTitle,
-  conditions
+  conditions,
+  name
 }) => {
   const [color, setColor] = useState("red");
   useEffect(() => {
@@ -54,12 +55,21 @@ export const ConditionBlock = ({
   }, [id]);
 
   const MySelectField = props => {
-    // const list = props.options;
     return (
       <SelectInput
         value={props.input.value}
         onPress={props.input.onChange}
         items={props.items}
+      />
+    );
+  };
+
+  const MyNumberInput = props => {
+    return (
+      <NumberInput
+        value={props.input.value}
+        onPress={props.input.onChange}
+        limitPosition={props.limitPosition}
       />
     );
   };
@@ -87,14 +97,22 @@ export const ConditionBlock = ({
         {type === "range" ? (
           <React.Fragment>
             <Text>{shortTitle}</Text>
-            <NumberInput limitPosition="left" />
-            <NumberInput limitPosition="right" />
+            <Field
+              name={`${name}Left`}
+              component={MyNumberInput}
+              limitPosition="left"
+            />
+            <Field
+              name={`${name}Right`}
+              component={MyNumberInput}
+              limitPosition="right"
+            />
           </React.Fragment>
         ) : type === "selecting" ? (
           <React.Fragment>
             <Text>{shortTitle}</Text>
             <Field
-              name={`${shortTitle}${id}`}
+              name={`${name}`}
               component={MySelectField}
               items={condition}
             />

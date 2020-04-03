@@ -2,15 +2,21 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { ConditionBlock } from "../ConditionBlock/ConditionBlock";
-import { SpecialButton } from "../../molecules";
+import { SpecialButton, Button } from "../../molecules";
+import { LineContainer } from "../../atoms";
 
 const ConditionListContainer = styled.div`
   overflow-y: auto;
   display: block;
-  height: 450px;
+  height: 490px;
+  max-width: 800px;
 `;
 
-export const ConditionList = ({ conditionsList, conditions }) => {
+export const ConditionList = ({
+  conditionsList,
+  conditions,
+  requestTrigger
+}) => {
   const [currentList, getCurrentList] = useState([]);
   const [newCurrentActive, getNewCurrentActive] = useState(false);
   const [activeConditions, getActiveConditions] = useState([]);
@@ -57,6 +63,7 @@ export const ConditionList = ({ conditionsList, conditions }) => {
         type={item.type}
         shortTitle={item.shortTitle}
         onPress={e => console.log(e)}
+        name={item.name}
       />
     ));
   };
@@ -67,17 +74,33 @@ export const ConditionList = ({ conditionsList, conditions }) => {
 
   return (
     <ConditionListContainer>
-       <form>
-      {currentList ? showConditions(currentList) : null}
+      <form>
+        {currentList ? showConditions(currentList) : null}
 
-      {newCurrentActive === false && activeConditions.length !== 0 ? (
-        <SpecialButton onPress={() => getNewCurrentActive(true)}>
-          Нажмите, чтобы добавить новое условие выборки. Все условия связываются
-          между собой логическим "И"
-        </SpecialButton>
-      ) : activeConditions.length !== 0 ? (
-        createCondition(activeConditions)
-      ) : null}</form>
+        {newCurrentActive === false && activeConditions.length !== 0 ? (
+          <SpecialButton onPress={() => getNewCurrentActive(true)}>
+            Нажмите, чтобы добавить новое условие выборки. Все условия
+            связываются между собой логическим "И"
+          </SpecialButton>
+        ) : activeConditions.length !== 0 ? (
+          createCondition(activeConditions)
+        ) : null}
+        <LineContainer>
+          {currentList.length > 0 ? (
+            <React.Fragment>
+              <Button
+                status="special"
+                onPress={() => alert('Заполните поля и нажмите "Далее"')}
+              >
+                Протестировать опрос
+              </Button>
+              <Button status="success" onPress={requestTrigger}>
+                Далее
+              </Button>
+            </React.Fragment>
+          ) : null}
+        </LineContainer>
+      </form>
     </ConditionListContainer>
   );
 };

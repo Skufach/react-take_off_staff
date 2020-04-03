@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { reduxForm, formValueSelector } from "redux-form";
+import { reduxForm } from "redux-form";
 
 import { RespondentScreen } from "./RespondentScreen";
 
@@ -8,7 +8,10 @@ import {
   getConditions
 } from "../../../../../store/interviewPage/selectors";
 
-import { trigger as fetchingTrigger } from "../../../../../store/interviewPage/actions";
+import {
+  trigger as fetchingTrigger,
+  request as requestTrigger
+} from "../../../../../store/interviewPage/actions";
 
 const mapStateToProps = state => ({
   conditionsList: getConditionsList(state),
@@ -16,7 +19,8 @@ const mapStateToProps = state => ({
 });
 
 export const RespondentScreenContainer = connect(mapStateToProps, {
-  fetchingTrigger
+  fetchingTrigger,
+  requestTrigger
 })(
   reduxForm({
     form: "conditionForm"

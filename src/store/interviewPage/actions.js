@@ -8,7 +8,4 @@ export const success = createAction(
 );
 
 export const failure = createAction("interviewPage->FAILURE");
-
-// export const item = createAction("requestScreen->ITEM", ({ updateItem }) => ({
-//   updateItem
-// }));
+export const request = createAction("interviewPage->REQUEST");

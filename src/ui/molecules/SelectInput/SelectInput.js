@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 
 const SelectBlock = styled.select`
@@ -17,15 +17,6 @@ const SelectBlock = styled.select`
 `;
 
 export const SelectInput = ({ items, onPress, id, value }) => {
-  const [currentValue, getCurrentValue] = useState("");
-
-  useEffect(() => {
-    if (id) {
-      const val = items.find(item => item.id === id);
-      getCurrentValue(val.value);
-    }
-  }, [id]);
-
   const createList = () => {
     const list = items ? (
       items.map((item, index) => (
@@ -55,7 +46,7 @@ export const SelectInput = ({ items, onPress, id, value }) => {
         value={value}
         items={items}
         onChange={event => onPress(event.target.value)}
-        current={currentValue}
+        current={value}
       >
         {selectList}
       </SelectBlock>

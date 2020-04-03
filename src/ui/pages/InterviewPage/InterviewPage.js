@@ -16,7 +16,7 @@ const InterviewContainer = styled.div`
   flex-direction: column;
 `;
 
-export const InterviewPage = ({}) => {
+export const InterviewPage = () => {
   return (
     <InterviewContainer>
       <InterviewNavigation />

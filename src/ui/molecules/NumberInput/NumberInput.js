@@ -19,8 +19,7 @@ const InputLabel = styled.label`
   font-size: 16px;
 `;
 
-export const NumberInput = ({ limitPosition }) => {
-  console.log(limitPosition);
+export const NumberInput = ({ limitPosition, onPress, value }) => {
   return (
     <React.Fragment>
       {limitPosition === "left" ? (
@@ -28,7 +27,11 @@ export const NumberInput = ({ limitPosition }) => {
       ) : limitPosition === "right" ? (
         <InputLabel>До</InputLabel>
       ) : null}
-      <InputContainer type="number" />
+      <InputContainer
+        type="number"
+        onChange={event => onPress(event.target.value)}
+        value={value}
+      />
     </React.Fragment>
   );
 };

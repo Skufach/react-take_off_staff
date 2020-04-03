@@ -19,7 +19,8 @@ const HeaderTitle = styled(Title)`
 export const RespondentScreen = ({
   conditionsList,
   conditions,
-  fetchingTrigger
+  fetchingTrigger,
+  requestTrigger
 }) => {
   useEffect(() => {
     fetchingTrigger();
@@ -28,7 +29,11 @@ export const RespondentScreen = ({
   return (
     <RespondentContainer>
       <HeaderTitle color="d9d9d9">Добавить опрос </HeaderTitle>
-      <ConditionList conditionsList={conditionsList} conditions={conditions} />
+      <ConditionList
+        conditionsList={conditionsList}
+        conditions={conditions}
+        requestTrigger={requestTrigger}
+      />
     </RespondentContainer>
   );
 };
