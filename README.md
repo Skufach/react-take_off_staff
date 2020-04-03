@@ -11,6 +11,7 @@
 - Redux
 - Redux-form
 - Redux-saga
+- Redux-actions
 - React-router
 - styled-component
 
